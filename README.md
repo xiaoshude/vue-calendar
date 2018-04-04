@@ -23,5 +23,12 @@ npm run unit
 # run all tests
 npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| dateCellRender | 自定义渲染日期单元格，返回内容会被追加到单元格 | function(date: moment): ReactNode | 无 |
+| dateFullCellRender | 自定义渲染日期单元格，返回内容覆盖单元格 | function(date: moment): ReactNode | 无 |
+| disabledDate | 不可选择的日期 | (currentDate: moment) => boolean | 无 |
+| fullscreen | 是否全屏显示 | boolean | true |
+| value | 展示日期 | [moment](http://momentjs.com/) | 当前日期 |
+| onPanelChange | 日期面板变化回调 | function(date: moment, mode: string) | 无 |
+| onSelect | 点击选择日期回调 | function(date: moment） | 无 |

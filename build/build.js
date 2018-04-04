@@ -2,7 +2,7 @@
 require('./check-versions')()
 
 process.env.NODE_ENV = 'production'
-
+const fs = require('fs')
 const ora = require('ora')
 const rm = require('rimraf')
 const path = require('path')
@@ -14,8 +14,9 @@ const webpackConfig = require('./webpack.prod.conf')
 const spinner = ora('building for production...')
 spinner.start()
 
-rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
-  if (err) throw err
+console.log('config.build.assetsRoot', config.build.assetsRoot)
+
+function compile () {
   webpack(webpackConfig, (err, stats) => {
     spinner.stop()
     if (err) throw err
@@ -38,4 +39,18 @@ rm(path.join(config.build.assetsRoot, config.build.assetsSubDirectory), err => {
       '  Opening index.html over file:// won\'t work.\n'
     ))
   })
-})
+}
+compile()
+/*
+
+if (fs.existsSync(path.join(__dirname, '../dist'))) {
+  console.log('fs.existsSync')
+  rm(path.join(__dirname, '../dist'), err => {
+    console.log('err', err)
+    if (err) throw err
+    compile()
+  })
+} else {
+  compile()
+}
+*/
